@@ -92,6 +92,7 @@ export const loginController = async (req, res) => {
       success: true,
       message: "login succesfully",
       user: {
+        _id: user._id,
         name: user.name,
         email: user.email,
         phone: user.phone,
@@ -103,6 +104,21 @@ export const loginController = async (req, res) => {
       success: false,
       message: "Error in login",
       error,
+    });
+  }
+};
+export const testController = async (req, res) => {
+  try {
+    res.send({
+      success: true,
+      message: "Middleware is working",
+    });
+  } catch (error) {
+    console.log(err);
+    res.status(401).send({
+      success: false,
+      message: "Something went wrong in Middleware ",
+      err,
     });
   }
 };
