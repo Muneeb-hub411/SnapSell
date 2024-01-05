@@ -17,13 +17,13 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 
 //routes
 app.use("/api/v1/auth", authRoutes);
 
 app.get("/", (req, res) => {
-  res.send("SnapSell erver running");
+  res.send("SnapSell server running");
 });
 app.get("/api/checkConnection", (req, res) => {
   res.json({ message: "connected with backend :)" });

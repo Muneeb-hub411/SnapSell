@@ -1,7 +1,7 @@
 import { response } from "express";
 import user_model from "../DB/Models/user_model.js";
 import { comparePassword, hashPassword } from "../helpers/authHelpers.js";
-import jwt from "jsonwebtoken";
+import JWT from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
   try {
@@ -85,7 +85,7 @@ export const loginController = async (req, res) => {
     }
     //token
 
-    const token = await jwt.sign({ _id: user._id }, process.env.JWT_SecretKey, {
+    const token = await JWT.sign({ _id: user._id }, process.env.JWT_SecretKey, {
       expiresIn: "7d",
     });
     res.status(200).send({

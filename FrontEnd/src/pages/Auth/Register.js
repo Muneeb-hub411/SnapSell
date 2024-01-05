@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import "../../styles/AuthStyles.css";
 
 const Register = () => {
-  const [fullName, setFullName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
@@ -18,7 +18,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post("/api/v1/auth/register",
-        { fullName, email, password, phone, address }
+        { name, email, password, phone, address }
       );
       if(res && res.data.success){
         toast.success(res.data && res.data.message);
@@ -41,8 +41,8 @@ const Register = () => {
           <div className="mb-3">
             <input
               type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="form-control"
               id="exampleInputName"
               aria-describedby="nameHelp"
