@@ -3,7 +3,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import { Toaster } from 'react-hot-toast';
 
-function layout({ children }) {
+function Layout({ children }) {
   return (
     <div>
       <Header />
@@ -11,9 +11,9 @@ function layout({ children }) {
         <Toaster/>
         {children}
       </main>
-      <Footer />
+      <Footer /> 
     </div>
   );
 }
 
-export default layout;
+export default Layout;
