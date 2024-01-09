@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
+import Contact_img from '../pages/images/contactus.jpeg'
 
 const Contact = () => {
   return (
@@ -8,7 +9,7 @@ const Contact = () => {
         <div className="row contactus ">
           <div className="col-md-6 ">
             <img
-              src="../images/contactus.jpeg"
+              src={Contact_img}
               alt="contactus"
               style={{ width: "100%" }}
             />
@@ -19,8 +20,8 @@ const Contact = () => {
               For any query and info about prodduct feel free to call anytime we
               24X7 aialible
             </p>
-            <p className="mt-3">📧 : muneebsaleem402@gmail.com</p>
-            <p className="mt-3">☎️ : 0316-5312005</p>
+            <p className="mt-3">📧 : snapsell@gmail.com</p>
+            <p className="mt-3">☎️ : +92 345 43252344</p>
             <p className="mt-3">👍 : 0000-0000-0000 (toll free)</p>
           </div>
         </div>
