@@ -3,6 +3,7 @@ import {
   registerController,
   loginController,
   testController,
+  forgotPasswordController,
 } from "../controller/authController.js";
 import { isAdmin, requireSignIn } from "../middleware/authMiddleware.js";
 
@@ -12,6 +13,9 @@ const router = express.Router();
 router.post("/register", registerController);
 
 router.post("/login", loginController);
+
+// Forgot Password || POST
+router.post('/forgot-password', forgotPasswordController);
 
 router.get("/testing", requireSignIn, isAdmin, testController);
 export default router;

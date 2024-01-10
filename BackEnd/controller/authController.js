@@ -5,7 +5,7 @@ import JWT from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
   try {
-    const { name, password, email, phone, address } = req.body;
+    const { name, password, email, phone, address, answer } = req.body;
     //Doing Validation
     if (!name) {
       res.send({ message: "Name is required" });
@@ -21,6 +21,9 @@ export const registerController = async (req, res) => {
     }
     if (!address) {
       res.send({ message: "Address is required" });
+    }
+    if (!answer) {
+      res.send({ message: "Answer is required" });
     }
 
     // idher hum existing user dekh rha
@@ -41,6 +44,7 @@ export const registerController = async (req, res) => {
       password: hashedPassword,
       address,
       phone,
+      answer,
     }).save();
 
     res.status(201).send({
@@ -83,8 +87,8 @@ export const loginController = async (req, res) => {
         message: "Invalid password",
       });
     }
-    //token
 
+    //token
     const token = await JWT.sign({ _id: user._id }, process.env.JWT_SecretKey, {
       expiresIn: "7d",
     });
@@ -107,6 +111,51 @@ export const loginController = async (req, res) => {
     });
   }
 };
+
+// forgotPasswordController
+export const forgotPasswordController = async (req, res) => {
+  try {
+    const {email, answer, newPassword} = req.body
+    if(!email)
+    {
+      res.status(400).send({message:'Email is required'})
+    }
+    if(!answer)
+    {
+      res.status(400).send({message:'Answer is required'})
+    }
+    if(!newPassword)
+    {
+      res.status(400).send({message:'New Passwword is required'})
+    }
+
+    // check
+    const user = await user_model.findOne({email,answer})
+    // validation
+    if(!user)
+    {
+      return res.status(404).send({
+        success:false,
+        message: "Wrong email or answer"
+      })
+    }
+    const hashed = await hashPassword(newPassword)
+    await user_model.findByIdAndUpdate(user._id,{password: hashed});
+    res.status(200).send({
+      success: true,
+      message: 'Password Reset Successfully'
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).send({
+      success:false,
+      message:'Something went wrong in Forgot Password',
+      error
+    })
+  }
+}
+
+// Test controller
 export const testController = async (req, res) => {
   try {
     res.send({

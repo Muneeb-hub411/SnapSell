@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
@@ -63,6 +63,13 @@ const Login = () => {
               placeholder="Password"
               required
             />
+          </div>
+          <div className="mb-3">
+            <Link
+              to='/forgot-password'
+            >
+              Forgot Password?
+            </Link>
           </div>
           <button type="submit" className="btn btn-primary">
             LOGIN
