@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./DB/db.js";
 import authRoutes from "./routes/authRouter.js";
+import categoryRoutes from "./routes/categoryRoutes.js"
 import cors from 'cors'
 
 //environment variable
@@ -22,6 +23,7 @@ const port = process.env.PORT;
 
 //routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/category", categoryRoutes);
 
 app.get("/", (req, res) => {
   res.send("SnapSell server running");
