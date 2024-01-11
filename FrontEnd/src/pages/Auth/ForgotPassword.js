@@ -29,7 +29,7 @@ function ForgotPassword() {
       }
     };
   return (
-    <Layout title='Forgot Password - Ecommerce APP'>
+    <Layout title='Forgot Password - SnapSell'>
         <div className="form-container">
         <h1 className="title">RESET PASSWORD</h1>
         <form onSubmit={handleSubmit}>

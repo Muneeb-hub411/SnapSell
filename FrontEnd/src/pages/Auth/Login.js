@@ -37,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <Layout title="Register - Ecommerce App">
+    <Layout title="Register - SnapSell">
       <div className="form-container">
         <h1 className="title">LOGIN FORM</h1>
         <form onSubmit={handleSubmit}>

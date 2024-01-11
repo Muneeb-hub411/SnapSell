@@ -35,7 +35,7 @@ const Register = () => {
   };
 
   return (
-    <Layout title="Register - Ecommerce App">
+    <Layout title="Register - SnapSell">
       <div className="form-container">
         <h1 className="title">REGISTER FORM</h1>
         <form onSubmit={handleSubmit}>

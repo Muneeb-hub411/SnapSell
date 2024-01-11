@@ -20,7 +20,12 @@ router.post('/forgot-password', forgotPasswordController);
 router.get("/testing", requireSignIn, isAdmin, testController);
 export default router;
 
-//portected auth
+// Portected User  route auth
 router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
+
+// Portected Admin route auth
+router.get("/admin-auth", requireSignIn,isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });
