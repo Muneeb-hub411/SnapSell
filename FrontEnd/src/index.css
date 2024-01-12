@@ -63,3 +63,9 @@
     align-items: center;
     justify-content: center;
   }
+
+/* Admin Display Products */
+  .product-link {
+    text-decoration: none !important;
+    color: black !important;
+  }
