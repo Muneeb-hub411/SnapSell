@@ -28,11 +28,9 @@ export const createProductController = async (req, res) => {
           .status(500)
           .send({ error: "Quantity of product is required" });
       case image && image.size > 1000000:
-        return res
-          .status(500)
-          .send({
-            error: "Image of product is required & should be less than 1mb",
-          });
+        return res.status(500).send({
+          error: "Image of product is required & should be less than 1mb",
+        });
     }
 
     const products = new productModel({ ...req.fields, slug: slugify(name) });
@@ -248,6 +246,55 @@ export const productListController = async (req, res) => {
     res.status(400).send({
       success: false,
       message: "error in per page controller",
+      error,
+    });
+  }
+};
+
+// Search Product
+export const searchProductController = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const results = await productModel
+      .find({
+        $or: [
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
+        ],
+      })
+      .select("-image");
+    res.json(results);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in search product API",
+      error,
+    });
+  }
+};
+
+// Related Product Controller
+export const relatedProductController = async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+    const products = await productModel
+      .find({
+        category: cid,
+        _id: { $ne: pid },
+      })
+      .select("-image")
+      .limit(3)
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error while getting related products",
       error,
     });
   }

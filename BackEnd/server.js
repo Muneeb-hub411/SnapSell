@@ -28,7 +28,7 @@ app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/products", productRoutes);
 
 app.get("/", (req, res) => {
-  res.send("SnapSell server running");
+  res.send(`SnapSell server running on port ${port}`);
 });
 app.get("/api/checkConnection", (req, res) => {
   res.json({ message: "connected with backend :)" });

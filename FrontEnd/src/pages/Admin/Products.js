@@ -19,7 +19,7 @@ const Products = () => {
     }
   };
 
-  //lifecycle method
+  // Display All Products (lifecycle method)
   useEffect(() => {
     getAllProducts();
   }, []);

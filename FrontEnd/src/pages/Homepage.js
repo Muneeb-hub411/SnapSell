@@ -3,8 +3,10 @@ import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
@@ -142,7 +144,11 @@ const Homepage = () => {
             <h1 className="text-center">All Products</h1>
             <div className="d-flex flex-wrap">
               {products?.map((p) => (
-                <div key={p.name} className="card m-2" style={{ width: "14rem" }}>
+                <div
+                  key={p.name}
+                  className="card m-2"
+                  style={{ width: "14rem" }}
+                >
                   <img
                     src={`/api/v1/products/product-image/${p._id}`}
                     className="card-img-top"
@@ -155,8 +161,19 @@ const Homepage = () => {
                       {p.description.substring(0, 20)}...
                     </p>
                     <p className="card-text"> $ {p.price}</p>
-                    <button className="btn btn-primary btn-sm ms-1" style={{fontSize: "12px"}} >More Details</button>
-                    <button className="btn btn-secondary btn-sm ms-1" style={{fontSize: "12px"}}>ADD TO CART</button>
+                    <button
+                      className="btn btn-primary btn-sm ms-1"
+                      style={{ fontSize: "12px" }}
+                      onClick={() => navigate(`/products/${p.slug}`)}
+                    >
+                      More Details
+                    </button>
+                    <button
+                      className="btn btn-secondary btn-sm ms-1"
+                      style={{ fontSize: "12px" }}
+                    >
+                      ADD TO CART
+                    </button>
                   </div>
                 </div>
               ))}
