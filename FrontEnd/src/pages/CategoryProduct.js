@@ -34,7 +34,7 @@ const CategoryProduct = () => {
               {products?.map((p) => (
                 <div
                   className="card m-2"
-                  style={{ width: "18rem" }}
+                  style={{ width: "18rem"}}
                   key={p._id}
                 >
                   <img
