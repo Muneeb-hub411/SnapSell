@@ -9,6 +9,35 @@ const CartPage = () => {
   const [cart, setCart] = useCart();
   const navigate = useNavigate();
 
+  // Total Price
+  const totalPrice = () =>{
+    try {
+      let total = 0;
+      cart?.map((item) =>{
+        total = total + item.price;
+      });
+      return total.toLocaleString("en-US", {
+        style: 'currency',
+        currency: 'USD',
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  // Remove Item from Cart
+  const removeCartItem = (pid) => {
+    try {
+      let myCart = [...cart];
+      let index = myCart.findIndex((item) => item._id === pid);
+      myCart.splice(index, 1);
+      setCart(myCart);
+      localStorage.setItem("cart", JSON.stringify(myCart));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Layout>
       <div className="container">
@@ -40,14 +69,25 @@ const CartPage = () => {
                   />
                 </div>
                 <div className="col-md-8">
-                    <h6>{p.name}</h6>
-                    <p>{p.description.substring(0,30)}</p>
-                    <p>Price: {p.price}</p>
+                  <h6>{p.name}</h6>
+                  <p>{p.description.substring(0, 30)}</p>
+                  <p>Price: {p.price}</p>
+                  <div
+                    className="btn btn-danger"
+                    onClick={() => removeCartItem(p._id)}
+                  >
+                    Remove
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="col-md-4">Checkout | Payment</div>
+          <div className="col-md-4 text-center">
+            <h2>Cart Summary</h2>
+            <p>Total Payment</p>
+            <hr />
+            <h4>Total: {totalPrice()}</h4>
+          </div>
         </div>
       </div>
     </Layout>

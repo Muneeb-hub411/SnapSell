@@ -174,8 +174,12 @@ const Homepage = () => {
                     <button
                       className="btn btn-secondary btn-sm ms-1"
                       style={{ fontSize: "12px" }}
-                      onClick={()=> {
+                      onClick={() => {
                         setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
                         toast.success("Item added to cart!");
                       }}
                     >
