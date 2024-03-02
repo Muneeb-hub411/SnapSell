@@ -117,45 +117,41 @@ export const loginController = async (req, res) => {
 // forgotPasswordController
 export const forgotPasswordController = async (req, res) => {
   try {
-    const {email, answer, newPassword} = req.body
-    if(!email)
-    {
-      res.status(400).send({message:'Email is required'})
+    const { email, answer, newPassword } = req.body;
+    if (!email) {
+      res.status(400).send({ message: "Email is required" });
     }
-    if(!answer)
-    {
-      res.status(400).send({message:'Answer is required'})
+    if (!answer) {
+      res.status(400).send({ message: "Answer is required" });
     }
-    if(!newPassword)
-    {
-      res.status(400).send({message:'New Passwword is required'})
+    if (!newPassword) {
+      res.status(400).send({ message: "New Passwword is required" });
     }
 
     // check
-    const user = await user_model.findOne({email,answer})
+    const user = await user_model.findOne({ email, answer });
     // validation
-    if(!user)
-    {
+    if (!user) {
       return res.status(404).send({
-        success:false,
-        message: "Wrong email or answer"
-      })
+        success: false,
+        message: "Wrong email or answer",
+      });
     }
-    const hashed = await hashPassword(newPassword)
-    await user_model.findByIdAndUpdate(user._id,{password: hashed});
+    const hashed = await hashPassword(newPassword);
+    await user_model.findByIdAndUpdate(user._id, { password: hashed });
     res.status(200).send({
       success: true,
-      message: 'Password Reset Successfully'
-    })
+      message: "Password Reset Successfully",
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).send({
-      success:false,
-      message:'Something went wrong in Forgot Password',
-      error
-    })
+      success: false,
+      message: "Something went wrong in Forgot Password",
+      error,
+    });
   }
-}
+};
 
 // Test controller
 export const testController = async (req, res) => {
@@ -170,6 +166,41 @@ export const testController = async (req, res) => {
       success: false,
       message: "Something went wrong in Middleware ",
       err,
+    });
+  }
+};
+
+// Update User Profile Controller
+export const updateUserProfileContoller = async (req, res) => {
+  try {
+    const { name, email, password, address, phone } = req.body;
+    const user = await user_model.findById(req.user._id);
+    //password
+    if (password && password.length < 6) {
+      return res.json({ error: "Passsword is required and 6 character long" });
+    }
+    const hashedPassword = password ? await hashPassword(password) : undefined;
+    const updatedUser = await user_model.findByIdAndUpdate(
+      req.user._id,
+      {
+        name: name || user.name,
+        password: hashedPassword || user.password,
+        phone: phone || user.phone,
+        address: address || user.address,
+      },
+      { new: true }
+    );
+    res.status(200).send({
+      success: true,
+      message: "Profile Updated Successfully",
+      updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error while updating user profile",
+      error,
     });
   }
 };
