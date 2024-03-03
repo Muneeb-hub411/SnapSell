@@ -111,7 +111,7 @@ const CartPage = () => {
                 <div className="col-md-8">
                   <h6>{p.name}</h6>
                   <p>{p.description.substring(0, 30)}</p>
-                  <p>Price: {p.price}</p>
+                  <p>Price: ${p.price}</p>
                   <div
                     className="btn btn-danger"
                     onClick={() => removeCartItem(p._id)}

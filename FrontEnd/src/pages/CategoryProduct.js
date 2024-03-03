@@ -1,27 +1,32 @@
-import React, {useState, useEffect} from 'react'
-import Layout from '../components/Layout/Layout'
-import axios from 'axios'
-import { useParams, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import Layout from "../components/Layout/Layout";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
+import { useCart } from "../context/cart";
+import toast from "react-hot-toast";
 
 const CategoryProduct = () => {
-    const params = useParams()
-    const navigate = useNavigate()
-    const [products, setProducts] = useState([])
-    const [category, setCategory] = useState([])
+  const params = useParams();
+  const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [cart, setCart] = useCart();
 
-    useEffect(()=>{
-        if (params?.slug) getProductsByCategory();
-    }, [params?.slug]);
+  useEffect(() => {
+    if (params?.slug) getProductsByCategory();
+  }, [params?.slug]);
 
-    const getProductsByCategory = async () =>{
-        try {
-            const {data} = await axios.get(`/api/v1/products/product-category/${params.slug}`)
-            setProducts(data?.products);
-            setCategory(data?.category);
-        } catch (error) {
-            console.log(error)
-        }
+  const getProductsByCategory = async () => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/products/product-category/${params.slug}`
+      );
+      setProducts(data?.products);
+      setCategory(data?.category);
+    } catch (error) {
+      console.log(error);
     }
+  };
 
   return (
     <Layout>
@@ -34,7 +39,7 @@ const CategoryProduct = () => {
               {products?.map((p) => (
                 <div
                   className="card m-2"
-                  style={{ width: "18rem"}}
+                  style={{ width: "18rem" }}
                   key={p._id}
                 >
                   <img
@@ -50,11 +55,23 @@ const CategoryProduct = () => {
                     <p className="card-text"> $ {p.price}</p>
                     <button
                       className="btn btn-primary ms-1"
+                      style={{ fontSize: "12px" }}
                       onClick={() => navigate(`/products/${p.slug}`)}
                     >
                       More Details
                     </button>
-                    <button className="btn btn-secondary ms-1">
+                    <button
+                      className="btn btn-secondary ms-1"
+                      style={{ fontSize: "12px" }}
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("Item added to cart!");
+                      }}
+                    >
                       ADD TO CART
                     </button>
                   </div>
@@ -78,7 +95,7 @@ const CategoryProduct = () => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default CategoryProduct
+export default CategoryProduct;
