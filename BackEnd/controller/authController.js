@@ -1,5 +1,7 @@
 import { response } from "express";
 import user_model from "../DB/Models/user_model.js";
+import orderModel from "../DB/Models/orderModel.js";
+
 import { comparePassword, hashPassword } from "../helpers/authHelpers.js";
 import JWT from "jsonwebtoken";
 
@@ -204,3 +206,18 @@ export const updateUserProfileContoller = async (req, res) => {
     });
   }
 };
+
+// Orders Controller
+export const getOrdersController = async (req, res) => {
+  try {
+    const orders = await orderModel.find({buyer:req.user._id}).populate("products","-image").populate("buyer","name");
+    res.json(orders);
+  } catch (error) {
+    console.log(error)
+    res.status(500).send({
+      success: false,
+      message: "Error while getting orders",
+      error
+    })
+  }
+}
