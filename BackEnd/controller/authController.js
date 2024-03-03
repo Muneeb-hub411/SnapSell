@@ -210,14 +210,57 @@ export const updateUserProfileContoller = async (req, res) => {
 // Orders Controller
 export const getOrdersController = async (req, res) => {
   try {
-    const orders = await orderModel.find({buyer:req.user._id}).populate("products","-image").populate("buyer","name");
+    const orders = await orderModel
+      .find({ buyer: req.user._id })
+      .populate("products", "-image")
+      .populate("buyer", "name");
     res.json(orders);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).send({
       success: false,
       message: "Error while getting orders",
-      error
-    })
+      error,
+    });
   }
-}
+};
+
+// All Orders Controller
+export const getAllOrdersController = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({})
+      .populate("products", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: -1 });
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting All Orders",
+      error,
+    });
+  }
+};
+
+// Order Status  Update Controller
+export const orderStatusContoller = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.body;
+    const orders = await orderModel.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while updating order status",
+      error,
+    });
+  }
+};

@@ -6,6 +6,8 @@ import {
   forgotPasswordController,
   updateUserProfileContoller,
   getOrdersController,
+  getAllOrdersController,
+  orderStatusContoller,
 } from "../controller/authController.js";
 import { isAdmin, requireSignIn } from "../middleware/authMiddleware.js";
 
@@ -20,7 +22,6 @@ router.post("/login", loginController);
 router.post('/forgot-password', forgotPasswordController);
 
 router.get("/testing", requireSignIn, isAdmin, testController);
-export default router;
 
 // Portected User  route auth
 router.get("/user-auth", requireSignIn, (req, res) => {
@@ -37,3 +38,11 @@ router.put("/user-profile", requireSignIn, updateUserProfileContoller)
 
 // Orders
 router.get('/orders', requireSignIn, getOrdersController)
+
+// All Orders
+router.get('/all-orders', requireSignIn, isAdmin, getAllOrdersController)
+
+// Order Status Update
+router.put('/order-status/:orderId', requireSignIn, isAdmin, orderStatusContoller)
+
+export default router;
