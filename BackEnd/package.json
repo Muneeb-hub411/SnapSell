@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^1.6.2",
     "bcrypt": "^5.1.1",
+    "braintree": "^3.21.0",
     "colors": "^1.4.0",
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",
