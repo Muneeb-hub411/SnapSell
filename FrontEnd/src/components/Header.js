@@ -9,8 +9,8 @@ import { Badge } from "antd";
 
 function Header() {
   const [auth, setAuth] = useAuth();
-  const [cart] = useCart()
-  const categories = useCategory()
+  const [cart] = useCart();
+  const categories = useCategory();
 
   const handleLogout = () => {
     setAuth({
@@ -21,13 +21,21 @@ function Header() {
     localStorage.removeItem("auth");
     toast.success("login successfully");
   };
+
   return (
-    <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            🛒 SnapSell
-          </Link>
+    <div className="bg-body-tertiary">
+      <div style={{backgroundColor: "black", color:"white", textAlign:"center"}}>
+       <p>Summer Sale For All Awim Suits And Free Express Delivery - OFF 50%! ShopNow
+</p> 
+      </div>
+      <nav className="navbar navbar-expand-lg">
+        <div className="container">
+          <div style={{ width:"20%"}}>
+            <Link className="navbar-brand" to="/">
+              🛒 SnapSell
+            </Link>
+          </div>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -39,11 +47,11 @@ function Header() {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <SearchInput/>
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{width: "50%"}}>
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0" style={{ marginRight: "auto" }}>
               <li className="nav-item">
-                <NavLink to="/" className="nav-link " aria-current="page">
+                <NavLink to="/" className="nav-link" aria-current="page">
                   Home
                 </NavLink>
               </li>
@@ -58,12 +66,16 @@ function Header() {
                 </Link>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link className="dropdown-item" to={"/categories"} style={{color: 'red'}}>
+                    <Link
+                      className="dropdown-item"
+                      to={"/categories"}
+                      style={{ color: "red" }}
+                    >
                       All Categories
                     </Link>
                   </li>
                   {categories?.map((c) => (
-                    <li>
+                    <li key={c.slug}>
                       <Link
                         className="dropdown-item"
                         to={`/category/${c.slug}`}
@@ -77,7 +89,6 @@ function Header() {
 
               {!auth.user ? (
                 <>
-                  {" "}
                   <li className="nav-item">
                     <NavLink to="/register" className="nav-link">
                       Register
@@ -125,19 +136,29 @@ function Header() {
                   </li>
                 </>
               )}
-
-              <li className="nav-item">
-                <Badge count={cart?.length} showZero>
-                <NavLink to="/cart" className="nav-link">
-                  Cart
-                </NavLink>
-                </Badge>
-              </li>
             </ul>
           </div>
+
+
+
+
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            <div className="ms-lg-4">
+              <SearchInput />
+            </div>
+          </div>
+
+
+          <hr/>
         </div>
+        
       </nav>
-    </>
+      <div style={{ width: "100%", height: "1px", backgroundColor: "#ccc"}}></div>
+    </div>
   );
 }
 

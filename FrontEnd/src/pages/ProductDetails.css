@@ -1,0 +1,494 @@
+/* Basic Styles */
+body {
+    font-family: Arial, sans-serif;
+}
+.quantity-control{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.product-details {
+    display: flex;
+    align-items: center;
+    margin: 50px auto;
+    max-width: 800px;
+}
+
+.product-details img {
+    width: 300px;
+    height: auto;
+    object-fit: cover;  /* Maintain aspect ratio */
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h2 {
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-bottom: 20px;
+}
+
+/* Color Selection */
+.color-selection {
+    margin-top: 10px;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.color-option.selected {
+    border: 2px solid #ccc;
+}
+
+/* Size Selection */
+.size-selection {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.size-option {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border: radius 10px;
+}
+
+
+
+
+
+
+
+
+
+.main_ContainerPadding135{
+
+    padding-left: 135px;
+    padding-right: 135px;
+}
+.topBottom92Margin {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  } 
+.breadcrumb-nav {
+    font-size: 14px; 
+    color: #555; /* A medium gray color */
+}
+
+.breadcrumb-nav a {
+    color: #007bff; /* Blue link color */
+    text-decoration: none;
+}
+
+.breadcrumb-nav .current-page {
+    font-weight: bold;
+    color: #333; /* Darker color for the current page */
+    text-decoration: none; /* Remove underline if desired */
+} 
+
+.button { 
+    background-color: #000000; /* From your --button color variable */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+.buttonRed { 
+    background-color: #ff0000; /* From your --button color variable */
+    color: #ffffff;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: Inter, sans-serif;
+}
+/* Color Variables */
+:root { 
+    --primary: #ffffff;
+    --primary1: #363738;
+    --secondary: #f5f5f5;
+    --secondary1: #fefaf1;
+    --bg: #ffffff;
+    --text: #fafafa;
+    --text1: #7d8184;
+    --text2: #000000;
+    --button: #000000;
+    --secondary2: #db4444;
+    --button1: #00ff66;
+    --button2: #db4444;
+    --hoverbutton: #e07575; /* Remove duplicate hoverbutton declaration */
+    --301px: #000000;
+}
+
+/* Typography Styles */
+.heading-110pxbold { 
+    font-weight: 700;
+    font-size: 6.875rem;
+    line-height: 7.1875rem;
+    font-family: Inter, sans-serif;
+}
+
+.heading-110pxsemibold {
+    font-weight: 600; 
+    font-size: 6.875rem;
+    line-height: 7.1875rem; 
+    font-family: Inter, sans-serif;
+}
+
+.heading-110pxmedium {
+    font-weight: 500; 
+    font-size: 6.875rem;
+    line-height: 7.1875rem; 
+    font-family: Inter, sans-serif;
+}
+
+.heading-110pxregular {
+    font-weight: 400; 
+    font-size: 6.875rem;
+    line-height: 7.1875rem; 
+    font-family: Inter, sans-serif;
+}
+
+.heading-90pxbold { 
+    font-weight: 700;
+    font-size: 5.625rem;
+    line-height: 6.125rem;
+    font-family: Inter, sans-serif; 
+}
+
+.heading-90pxsemibold {
+    font-weight: 600; 
+    font-size: 5.625rem;
+    line-height: 6.125rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-90pxmedium {
+    font-weight: 500; 
+    font-size: 5.625rem;
+    line-height: 6.125rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-90pxregular {
+    font-weight: 400; 
+    font-size: 5.625rem;
+    line-height: 6.125rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-64pxbold { 
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 4.25rem;
+    font-family: Inter, sans-serif; 
+}
+
+.heading-64pxsemibold {
+    font-weight: 600; 
+    font-size: 4rem;
+    line-height: 4.25rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-64pxmedium {
+    font-weight: 500; 
+    font-size: 4rem;
+    line-height: 4.25rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-64pxregular {
+    font-weight: 400; 
+    font-size: 4rem;
+    line-height: 4.25rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-54pxbold { 
+    font-weight: 700;
+    font-size: 3.375rem;
+    line-height: 4rem;
+    font-family: Inter, sans-serif; 
+}
+
+.heading-54pxsemibold {
+    font-weight: 600; 
+    font-size: 3.375rem;
+    line-height: 4rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-54pxmedium {
+    font-weight: 500; 
+    font-size: 3.375rem;
+    line-height: 4.25rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-54pxregular {
+    font-weight: 400; 
+    font-size: 3.375rem;
+    line-height: 4rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-48pxbold { 
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 3.25rem;
+    font-family: Inter, sans-serif; 
+}
+
+.heading-48pxsemibold {
+    font-weight: 600; 
+    font-size: 3rem;
+    line-height: 3.75rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-48pxmedium {
+    font-weight: 500; 
+    font-size: 3rem;
+    line-height: 3.75rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-48pxregular {
+    font-weight: 400; 
+    font-size: 3rem;
+    line-height: 3.25rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-36pxbold { 
+    font-weight: 700;
+    font-size: 2.25rem;
+    line-height: 1.875rem;
+    font-family: Inter, sans-serif; 
+}
+
+.heading-36pxsemibold {
+    font-weight: 600; 
+    font-size: 2.25rem;
+    line-height: 3rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-36pxmedium {
+    font-weight: 500; 
+    font-size: 2.25rem;
+    line-height: 1.875rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-36pxregular {
+    font-weight: 400; 
+    font-size: 2.25rem;
+    line-height: 1.875rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-24pxbold { 
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    font-family: Inter, sans-serif; 
+}
+
+.heading-24pxsemibold {
+    font-weight: 600; 
+    font-size: 1.5rem;
+    line-height: 1.5rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-24pxmedium {
+    font-weight: 500; 
+    font-size: 1.5rem;
+    line-height: 1.5rem; 
+    font-family: Inter, sans-serif; 
+}
+
+.heading-24pxregular {
+    font-weight: 400; 
+    font-size: 1.5rem;
+    line-height: 1.5rem; 
+    font-family: Inter, sans-serif; 
+}
+.text-12pxregularInter {
+    font-size: 12px;
+    font-weight: 400;  /* Use font-weight 500 for medium */
+    color: #000000;   /* Solid black */
+    font-family: Inter, sans-serif; 
+}
+.text-16pxregularInter {
+    font-size: 16px;
+    font-weight: 600;  /* Use font-weight 500 for medium */
+    color: #000000;   /* Solid black */
+    font-family: Inter, sans-serif; 
+}
+.text-24pxregularInter {
+    font-size: 24px;
+    font-weight: 700;  /* Use font-weight 500 for medium */
+    color: #000000;   /* Solid black */
+    font-family: Inter, sans-serif; 
+}
+.text-64pxregularInter {
+    font-size: 64px;
+    font-weight: 700;  /* Use font-weight 500 for medium */
+    color: #000000;   /* Solid black */
+    font-family: Inter, sans-serif; 
+}
+.Cart-headName-display {
+    font-size: 16px;
+    font-weight: 500;  /* Use font-weight 500 for medium */
+    color: #000000;   /* Solid black */
+  }
+  .Redtext-display {
+    font-size: 15px; /* Changed to 15px */
+    font-weight: 500; 
+    color: #ff0000;   /* Red color */
+  }
+  .line {
+    width: 600px; /* Set the width of the line */
+    height: 1px; /* Set the height of the line */
+    background-color: black; /* Set the color of the line */
+}
+.product-details1 {
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.rating {
+    color: gray;
+}
+
+.golden-star {
+    color: goldenrod;
+}
+
+.reviews {
+    color: gray;
+    margin: 0 5px;
+}
+
+.availability {
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.in-stock {
+    background-color: green;
+    color: white;
+}
+
+.out-of-stock {
+    background-color: red;
+    color: white;
+}
+.product-images {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.main-image img {
+    width: 400px;
+    height: 300px;
+    margin-bottom: 10px;
+}
+
+.additional-images {
+    display: flex;
+}
+.product-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.doubleColumnimages {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.additional-images {
+    width: 87px;
+    height: 87px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    vertical-align: middle;
+    align-content: center;
+    margin: 10px 10px 10px 10px;
+    gap: 9px;
+}
+
+.details {
+    width: 50%; /* Adjust width as needed */
+}
+
+.product-name {
+    font-size: 24px;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.product-description {
+    font-size: 16px;
+    color: #000000;
+}
+
+.product-rating {
+    margin-top: 10px;
+}
+
+.reviews, .availability {
+    margin-right: 10px;
+}
+
+.button {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.golden-star {
+    color: goldenrod;
+}
+
+.in-stock {
+    background-color: green;
+    color: white;
+}
+
+.out-of-stock {
+    background-color: red;
+    color: white;
+}
+
+
+
+
+
+
+

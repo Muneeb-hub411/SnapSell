@@ -4,7 +4,9 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
-import "../../styles/AuthStyles.css";
+import "../../styles/Login.css";
+import image_1 from "../../pages/images/image_1.png";
+import TextField from "@mui/material/TextField";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -38,43 +40,87 @@ const Login = () => {
 
   return (
     <Layout title="Register - SnapSell">
-      <div className="form-container">
-        <h1 className="title">LOGIN FORM</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Email"
-              required
-            />
+      <div className="row" style={{ height: "60%", marginTop: "30px" }}>
+        <div className="col-md-7">
+          <img
+            src={image_1}
+            alt="Dummy Image"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </div>
+
+        <div className="form-container col-md-5">
+          <h1 className="title">Log in to Exclusive</h1>
+          <div>Enter your detail below</div>
+
+          <div style={{ width: "50%" }}>
+            <div className="mb-3">
+              {/* <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Email"
+                required
+              /> */}
+
+              <TextField
+                label="Email"
+                multiline
+                maxRows={7}
+                variant="standard"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Email"
+                required
+                style={{ width: "100%" }}
+              />
+            </div>
+            <div className="mb-3">
+              {/* <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                required
+              /> */}
+              <TextField
+                label="Password"
+                multiline
+                maxRows={7}
+                variant="standard"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                aria-describedby="emailHelp"
+                required
+                style={{ width: "100%" }}
+              />
+            </div>
+            <div className="mb-3">
+              <Link to="/forgot-password">Forgot Password?</Link>
+            </div>  
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                className="btn btn-danger"
+              >
+                LOGIN
+              </button>
+            
           </div>
-          <div className="mb-3">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <Link
-              to='/forgot-password'
-            >
-              Forgot Password?
-            </Link>
-          </div>
-          <button type="submit" className="btn btn-primary">
-            LOGIN
-          </button>
-        </form>
+        </div>
       </div>
     </Layout>
   );

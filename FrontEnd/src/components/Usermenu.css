@@ -1,0 +1,57 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+  }
+  
+  .sidebar {
+    width: 250px; /* Adjust the width as needed */
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  .sidebar .profile {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar .profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Circular profile picture */
+  }
+  
+  .sidebar .profile h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .sidebar li a:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .sidebar .sub-menu {
+    display: none;
+    position: relative;
+  }
+  
+  .sidebar li:hover .sub-menu {
+    display: block;
+  }
+  
+  .sub-menu a {
+    padding-left: 20px;
+  }
+  

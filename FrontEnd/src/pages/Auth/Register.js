@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from 'react-hot-toast';
 import "../../styles/AuthStyles.css";
+import TextField from "@mui/material/TextField";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -38,9 +39,10 @@ const Register = () => {
     <Layout title="Register - SnapSell">
       <div className="form-container">
         <h1 className="title">REGISTER FORM</h1>
-        <form onSubmit={handleSubmit}>
+
+        <div style={{width:"25%"}}>
           <div className="mb-3">
-            <input
+            {/* <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -49,10 +51,25 @@ const Register = () => {
               aria-describedby="nameHelp"
               placeholder="Full Name"
               required
-            />
+            /> */}
+            <TextField
+                label="Full Name"
+                multiline
+                maxRows={7}
+                variant="standard"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="form-control"
+                id="exampleInputName"
+                aria-describedby="emailHelp"
+                placeholder="Full Name"
+                required
+                style={{ width: "100%" }}
+              />
           </div>
           <div className="mb-3">
-            <input
+            {/* <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -61,10 +78,25 @@ const Register = () => {
               aria-describedby="emailHelp"
               placeholder="Email"
               required
-            />
+            /> */}
+             <TextField
+                label="Full Name"
+                multiline
+                maxRows={7}
+                variant="standard"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Email"
+                required
+                style={{ width: "100%" }}
+              />
           </div>
           <div className="mb-3">
-            <input
+            {/* <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -72,10 +104,25 @@ const Register = () => {
               id="exampleInputPassword1"
               placeholder="Password"
               required
-            />
+            /> */}
+            <TextField
+                label="Password"
+                multiline
+                maxRows={7}
+                variant="standard"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-control"
+                id="exampleInputPassword1"
+                aria-describedby="emailHelp"
+                placeholder="Password"
+                required
+                style={{ width: "100%" }}
+              />
           </div>
           <div className="mb-3">
-            <input
+            {/* <input
               type="text"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -84,10 +131,25 @@ const Register = () => {
               aria-describedby="phoneHelp"
               placeholder="Phone"
               required
-            />
+            /> */}
+            <TextField
+                label="Phone"
+                multiline
+                maxRows={7}
+                variant="standard"
+                type="text"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="form-control"
+                id="exampleInputPhone"
+                aria-describedby="phoneHelp"
+                placeholder="Phone"
+                required
+                style={{ width: "100%" }}
+              />
           </div>
           <div className="mb-3">
-            <input
+            {/* <input
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -96,10 +158,25 @@ const Register = () => {
               aria-describedby="addressHelp"
               placeholder="Address"
               required
-            />
+            /> */}
+            <TextField
+                label="Address"
+                multiline
+                maxRows={7}
+                variant="standard"
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="form-control"
+                id="exampleInputAddress"
+                aria-describedby="addressHelp"
+                placeholder="Address"
+                required
+                style={{ width: "100%" }}
+              />
           </div>
           <div className="mb-3">
-            <input
+            {/* <input
               type="text"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
@@ -108,13 +185,28 @@ const Register = () => {
               aria-describedby="answerHelp"
               placeholder="What is the name of your first pet?"
               required
-            />
+            /> */}
+            <TextField
+                label="What is the name of your first pet?"
+                multiline
+                maxRows={7}
+                variant="standard"
+                type="text"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                className="form-control"
+                id="exampleInputAnswer"
+                aria-describedby="addressHelp"
+                placeholder="What is the name of your first pet?"
+                required
+                style={{ width: "100%" }}
+              />
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-danger" onClick={handleSubmit}>
             REGISTER
           </button>
-        </form>
+        </div>
       </div>
     </Layout>
   );

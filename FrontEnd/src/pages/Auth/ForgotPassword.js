@@ -4,6 +4,7 @@ import { useNavigate} from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
+import TextField from "@mui/material/TextField";
 
 function ForgotPassword() {
     const [email, setEmail] = useState("");
@@ -32,9 +33,10 @@ function ForgotPassword() {
     <Layout title='Forgot Password - SnapSell'>
         <div className="form-container">
         <h1 className="title">RESET PASSWORD</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <input
+
+        <div style={{width:"20%"}}>
+          <div className="mb-3" >
+            {/* <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -43,10 +45,26 @@ function ForgotPassword() {
               aria-describedby="emailHelp"
               placeholder="Email"
               required
-            />
+            /> */}
+            <TextField
+                label="Email"
+                multiline
+                maxRows={7}
+                variant="standard"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                id="exampleInputEmail1"
+                placeholder="Email"
+                aria-describedby="emailHelp"
+                required
+                style={{ width: "100%" }}
+              />
+
           </div>
           <div className="mb-3">
-            <input
+            {/* <input
               type="text"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
@@ -55,9 +73,41 @@ function ForgotPassword() {
               aria-describedby="answerHelp"
               placeholder="Enter name of your First Pet"
               required
-            />
+            /> */}
+            <TextField
+                label="Enter name of your First Pet"
+                multiline
+                maxRows={7}
+                variant="standard"
+                type="text"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                className="form-control"
+                id="exampleInputPassword"
+                placeholder="Enter name of your First Pet"
+                aria-describedby="emailHelp"
+                required
+                style={{ width: "100%" }}
+              />
           </div>
           <div className="mb-3">
+          <TextField
+                label="New Password"
+                multiline
+                maxRows={7}
+                variant="standard"
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="form-control"
+                id="exampleInputPassword"
+                placeholder="New Password"
+                aria-describedby="emailHelp"
+                required
+                style={{ width: "100%" }}
+              />
+          </div>
+          {/* <div className="mb-3">
             <input
               type="password"
               value={newPassword}
@@ -67,11 +117,11 @@ function ForgotPassword() {
               placeholder="New Password"
               required
             />
-          </div>
-          <button type="submit" className="btn btn-primary">
+          </div> */}
+          <button type="submit" onClick={handleSubmit} className="btn btn-danger">
             RESET
           </button>
-        </form>
+        </div>
       </div>
     </Layout>
   )
