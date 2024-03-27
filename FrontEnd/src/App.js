@@ -25,6 +25,7 @@ import Categories from "./pages/Categories";
 import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
+import KommunicateChat from './chat';
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
         <Route path="/policy" element={<Policy />} />
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
+      <KommunicateChat />
     </>
   );
 }

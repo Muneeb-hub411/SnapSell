@@ -164,7 +164,7 @@ const Homepage = () => {
       />
 
       <div className="product-info">
-         <h5 className="card-title">{p.name}</h5>
+         <h5 className="titleOfCard">{p.name}</h5>
          <p className="product-price"> 
           <span>${p.price - (p.price * 40 / 100)}</span> <del>${p.price}</del>
          </p> 

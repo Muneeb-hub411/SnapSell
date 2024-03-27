@@ -1,11 +1,8 @@
-.title {
-    display: flex;
-    width: 300px; /* Adjust the width as needed */
-    background-color: #fff;
-    border: 1px solid #ddd;
+.titleOfCard {
+    color: #000;
+    font-family: poppins;
+    font-size: 16px;
     border-radius: 4px;
-    margin: 10px;
-    padding: 10px;
   }
 .product-card {
     display: flex;
