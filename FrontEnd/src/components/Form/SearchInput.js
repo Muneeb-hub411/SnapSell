@@ -28,10 +28,11 @@ const SearchInput = () => {
           style={{
             display: "flex",
             flexDirection: "row",
-            backgroundColor: "#cacfcb",
+            backgroundColor: "white",
             width: "100%",
             borderRadius: "5px",
             marginLeft: "40px",
+            border: "2px solid black",
           }}
         >
           <input
@@ -41,11 +42,11 @@ const SearchInput = () => {
             style={{
               border: "none",
               borderRadius: "5px 0 0 5px",
-              backgroundColor: "#cacfcb",
+              backgroundColor: "white",
               outline: "none", // Remove outline
               padding: "10px",
               width: "calc(100% - 20px)", // Adjust input width
-              fontSize: "10px"
+              fontSize: "12px"
               
             }}
           />
@@ -54,7 +55,7 @@ const SearchInput = () => {
             style={{
               border: "none",
               borderRadius: "0 5px 5px 0",
-              backgroundColor: "#cacfcb",
+              backgroundColor: "white",
               color: "black",
               cursor: "pointer",
               padding: "10px",

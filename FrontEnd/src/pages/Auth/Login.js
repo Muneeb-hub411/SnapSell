@@ -50,8 +50,8 @@ const Login = () => {
         </div>
 
         <div className="form-container col-md-5">
-          <h1 className="title">Log in to Exclusive</h1>
-          <div>Enter your detail below</div>
+          <h1 className="title">Log in to SnapSell</h1>
+          {/* <div>Enter your detail below</div> */}
 
           <div style={{ width: "50%" }}>
             <div className="mb-3">

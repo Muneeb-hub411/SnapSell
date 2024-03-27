@@ -24,13 +24,21 @@ function Header() {
 
   return (
     <div className="bg-body-tertiary">
-      <div style={{backgroundColor: "black", color:"white", textAlign:"center"}}>
-       <p>Summer Sale For All Awim Suits And Free Express Delivery - OFF 50%! ShopNow
-</p> 
+      <div
+        style={{
+          backgroundColor: "black",
+          color: "white",
+          textAlign: "center",
+        }}
+      >
+        <p>
+          Summer Sale For All Awim Suits And Free Express Delivery - OFF 50%!
+          ShopNow
+        </p>
       </div>
       <nav className="navbar navbar-expand-lg">
         <div className="container">
-          <div style={{ width:"20%"}}>
+          <div style={{ width: "20%" }}>
             <Link className="navbar-brand" to="/">
               🛒 SnapSell
             </Link>
@@ -48,8 +56,15 @@ function Header() {
             <span className="navbar-toggler-icon" />
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{width: "50%"}}>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0" style={{ marginRight: "auto" }}>
+          <div
+            className="collapse navbar-collapse"
+            id="navbarSupportedContent"
+            style={{ width: "50%" }}
+          >
+            <ul
+              className="navbar-nav ms-auto mb-2 mb-lg-0"
+              style={{ marginRight: "auto" }}
+            >
               <li className="nav-item">
                 <NavLink to="/" className="nav-link" aria-current="page">
                   Home
@@ -139,9 +154,6 @@ function Header() {
             </ul>
           </div>
 
-
-
-
           <div
             style={{
               display: "flex",
@@ -152,12 +164,12 @@ function Header() {
             </div>
           </div>
 
-
-          <hr/>
+          <hr />
         </div>
-        
       </nav>
-      <div style={{ width: "100%", height: "1px", backgroundColor: "#ccc"}}></div>
+      <div
+        style={{ width: "100%", height: "1px", backgroundColor: "#ccc" }}
+      ></div>
     </div>
   );
 }
