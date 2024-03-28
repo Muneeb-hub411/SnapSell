@@ -80,7 +80,7 @@ const Register = () => {
               required
             /> */}
              <TextField
-                label="Full Name"
+                label="Email"
                 multiline
                 maxRows={7}
                 variant="standard"

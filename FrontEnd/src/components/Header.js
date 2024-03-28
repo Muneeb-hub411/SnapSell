@@ -162,6 +162,15 @@ function Header() {
             <div className="ms-lg-4">
               <SearchInput />
             </div>
+            <div className="ms-lg-4">
+            <li className="nav-item">
+                <Badge count={cart?.length} showZero>
+                <NavLink to="/cart" className="nav-link">
+                  Cart
+                </NavLink>
+                </Badge>
+              </li>
+            </div>
           </div>
 
           <hr />
