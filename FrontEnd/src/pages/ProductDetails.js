@@ -216,7 +216,7 @@ const ProductDetails = () => {
                 <del>${p.price}</del>
               </p>
               <div class="product-details1">
-                <div class="rating">
+                <div class="rating"> 
                   <span class="golden-star">&#9733;</span>
                   <span class="golden-star">&#9733;</span>
                   <span class="golden-star">&#9733;</span>

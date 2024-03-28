@@ -40,18 +40,18 @@ const Login = () => {
 
   return (
     <Layout title="Register - SnapSell">
-       <div className="container">
-      <div className="row" style={{ height: "60%", marginTop: "30px" }}>
-        <div className="col-md-7">
-          <img
-            src={image_1}
-            alt="Dummy Image"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        </div>
+      <div className="container">
+        <div className="row" style={{ height: "60%", marginTop: "30px" }}>
+          <div className="col-md-7">
+            <img
+              src={image_1}
+              alt="Dummy Image"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </div>
 
-          <div style={{ width: "35%" }}>
-          <h1 className="title">Log in to SnapSell</h1>
+          <div style={{ width: "35%", marginTop: "10rem" }}>
+            <h1 className="title">Log in to SnapSell</h1>
 
             <div className="mb-3">
               {/* <input
@@ -91,7 +91,7 @@ const Login = () => {
                 placeholder="Password"
                 required
               /> */}
-              
+
               <TextField
                 label="Password"
                 variant="standard"
@@ -99,7 +99,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="form-control"
-                id="exampleInputPassword"  // Update ID if desired
+                id="exampleInputPassword" // Update ID if desired
                 placeholder="Password"
                 aria-describedby="emailHelp"
                 required
@@ -108,15 +108,14 @@ const Login = () => {
             </div>
             <div className="mb-3">
               <Link to="/forgot-password">Forgot Password?</Link>
-            </div>  
-              <button
-                type="submit"
-                onClick={handleSubmit}
-                className="btn btn-danger"
-              >
-                LOGIN
-              </button>
-            
+            </div>
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="btn btn-danger"
+            >
+              LOGIN
+            </button>
           </div>
         </div>
       </div>
