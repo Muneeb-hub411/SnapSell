@@ -103,7 +103,7 @@ const Login = () => {
                 className="form-control"
                 id="exampleInputPassword1"
                 placeholder="Password"
-                aria-describedby="emailHelp"
+                aria-describedby="passwordHelp"
                 required
                 style={{ width: "100%" }}
               />
