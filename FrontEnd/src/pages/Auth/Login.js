@@ -40,6 +40,7 @@ const Login = () => {
 
   return (
     <Layout title="Register - SnapSell">
+       <div className="container">
       <div className="row" style={{ height: "60%", marginTop: "30px" }}>
         <div className="col-md-7">
           <img
@@ -49,11 +50,9 @@ const Login = () => {
           />
         </div>
 
-        <div className="form-container col-md-5">
+          <div style={{ width: "35%" }}>
           <h1 className="title">Log in to SnapSell</h1>
-          {/* <div>Enter your detail below</div> */}
 
-          <div style={{ width: "50%" }}>
             <div className="mb-3">
               {/* <input
                 type="email"
@@ -92,18 +91,16 @@ const Login = () => {
                 placeholder="Password"
                 required
               /> */}
+              
               <TextField
                 label="Password"
-                multiline
-                maxRows={7}
                 variant="standard"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="form-control"
-                id="exampleInputPassword1"
+                id="exampleInputPassword"  // Update ID if desired
                 placeholder="Password"
-                aria-describedby="emailHelp"
                 required
                 style={{ width: "100%" }}
               />
