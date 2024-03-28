@@ -5,7 +5,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
 import TextField from "@mui/material/TextField";
-
+import "../../styles/Login.css";
+import image_1 from "../../pages/images/image_1.png";
 function ForgotPassword() {
     const [email, setEmail] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -31,10 +32,20 @@ function ForgotPassword() {
     };
   return (
     <Layout title='Forgot Password - SnapSell'>
-        <div className="form-container">
-        <h1 className="title">RESET PASSWORD</h1>
+        <div className="container">
 
-        <div style={{width:"20%"}}>
+      <div className="row" style={{ height: "60%", marginTop: "30px" }}>
+        <div className="col-md-7">
+          <img
+            src={image_1}
+            alt="Dummy Image"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </div>
+
+        <div style={{width:"35%"}}>
+        <h1 className="title">Reset password</h1>
+
           <div className="mb-3" >
             {/* <input
               type="email"
@@ -91,18 +102,16 @@ function ForgotPassword() {
               />
           </div>
           <div className="mb-3">
+         
           <TextField
                 label="New Password"
-                multiline
-                maxRows={7}
                 variant="standard"
                 type="password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 className="form-control"
-                id="exampleInputPassword"
-                placeholder="New Password"
-                aria-describedby="emailHelp"
+                id="exampleInputPassword"  // Update ID if desired
+                placeholder="Password"
                 required
                 style={{ width: "100%" }}
               />
@@ -123,6 +132,9 @@ function ForgotPassword() {
           </button>
         </div>
       </div>
+      </div>
+
+
     </Layout>
   )
 }
