@@ -34,42 +34,52 @@ const CategoryProduct = () => {
         <h4 className="text-center">Category - {category?.name}</h4>
         <h6 className="text-center">{products?.length} result found </h6>
         <div className="row">
-          <div className="col-md-9 offset-1">
+          <div className="col-md-10 offset-1">
             <div className="d-flex flex-wrap">
               {products?.map((p) => (
                 <div
-                  className="card m-2"
-                  style={{ width: "18rem" }}
-                  key={p._id}
-                >
-                  <img
-                    src={`/api/v1/products/product-image/${p._id}`}
-                    className="card-img-top"
-                    alt={p.name}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{p.name}</h5>
-                    <p className="card-text">
-                      {p.description.substring(0, 30)}...
-                    </p>
-                    <p className="card-text"> $ {p.price}</p>
-                    <button
-                      className="btn btn-primary ms-1"
-                      style={{ fontSize: "12px" }}
-                      onClick={() => navigate(`/products/${p.slug}`)}
-                    >
-                      More Details
-                    </button>
-                    <button
-                      className="btn btn-secondary ms-1"
-                      style={{ fontSize: "12px" }}
-                      onClick={() => {
-                        setCart([...cart, p]);
-                        localStorage.setItem(
-                          "cart",
-                          JSON.stringify([...cart, p])
-                        );
-                        toast.success("Item added to cart!");
+                key={p.name}
+                className="card m-2"
+                style={{ width: "15rem" }}
+                onClick={() => navigate(`/products/${p.slug}`)} // Add onClick to the card
+              >
+                <img
+                  src={`/api/v1/products/product-image/${p._id}`}
+                  className="card-img-top"
+                  height={"150px"}
+                  alt={p.name}
+                />
+
+                <div className="product-info">
+                  <h5 className="titleOfCard">
+                    {p.name.substring(0, 20)}...
+                  </h5>
+                  <p className="product-price">
+                    <span>${p.price - (p.price * 40) / 100}</span>{" "}
+                    <del>${p.price}</del>
+                  </p>
+                  <div class="product-details1">
+                    <div class="rating">
+                      <span class="golden-star">&#9733;</span>
+                      <span class="golden-star">&#9733;</span>
+                      <span class="golden-star">&#9733;</span>
+                      <span class="golden-star">&#9733;</span>
+                      <span class="golden-star">&#9733;</span>
+                    </div>
+                    <span class="reviews"> (88 reviews) </span>
+                  </div>
+                  <button
+                    className="btn btn-secondary btn-sm ms-1"
+                    style={{ fontSize: "12px" }}
+                    onClick={(event) => {
+                      // Modify onClick here
+                      event.stopPropagation(); // Prevent card click from propagating up
+                      setCart([...cart, p]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
+                      toast.success("Item added to cart!");
                       }}
                     >
                       ADD TO CART
