@@ -50,3 +50,28 @@
       #000000
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
+  a{
+    text-decoration: none;
+  }
+  .forgot_btn{
+    margin-left: 2rem;
+  }
+  .forgot_btn:hover, .login:hover{
+    text-decoration: underline;
+  }
+  .btn_div{
+    margin-top: 20px;
+  }
+  .btn{
+    padding: .5rem 2rem;
+  }
+
+  .detail_form{
+    margin: auto 0;
+    width: 35%;
+  }
+  .title{
+    font-size: 36px;
+    font-family: "Inter";
+    font-weight: 500; 
+}

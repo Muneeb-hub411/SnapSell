@@ -41,29 +41,28 @@ function Footer() {
             {/* Center content horizontally */}
             <div className="grid-item">
               <h5>Account</h5>
-              <p>My Account</p>
-              <p>Login / Register</p>
-              <p>Cart</p>
-              <p>Wishlist</p>
-              <p>Shop</p>
-              <Link to="/contact">Contact</Link>
+              <Link to='/myAccount'>My Account</Link>
+              <Link to='/login'>Login / Register</Link>
+              <Link to='/cart'>Cart</Link>
+              <Link to='/wishlist'>Wishlist</Link>
+              <Link to='/shop'>Shop</Link>
             </div>
           </div>
           <div className="col-6 col-sm-2 col-md-2 d-flex justify-content-center">
             {/* Center content horizontally */}
             <div className="grid-item">
               <h5>Quick Link</h5>
-              <p>Privacy Policy</p>
-              <p>Terms of Use</p>
-              <p>FAQ</p>
-              <p>Contact</p>
+              <Link to="/policy">Privacy Policy</Link>
+              <Link to='/terms'>Terms of Use</Link>
+              <Link to='/faqs'>FAQs</Link>
+              <Link to="/contact">Contact</Link>
             </div>
           </div>
           <div className="col-6 col-sm-3 col-md-3 d-flex justify-content-center">
             {/* Center content horizontally */}
             <div className="grid-item">
               <h5>Download App</h5>
-              <p>save $3 with App New User Only</p>
+              <p>Save $3 with App New User Only</p>
              
               <div className="d-flex">
                 <div className="col-6">
@@ -102,8 +101,6 @@ function Footer() {
                 <FaLinkedinIn />
                 </div>            
               </div>
-
-              <Link to="/policy">Policy</Link>
             </div>
           </div>
         </div>

@@ -4,7 +4,6 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
-import "../../styles/Login.css";
 import image_1 from "../../pages/images/image_1.png";
 import TextField from "@mui/material/TextField";
 
@@ -50,21 +49,10 @@ const Login = () => {
             />
           </div>
 
-          <div style={{ width: "35%", marginTop: "10rem" }}>
+          <div className='detail_form'>
             <h1 className="title">Log in to SnapSell</h1>
 
             <div className="mb-3">
-              {/* <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="Email"
-                required
-              /> */}
-
               <TextField
                 label="Email"
                 multiline
@@ -82,16 +70,6 @@ const Login = () => {
               />
             </div>
             <div className="mb-3">
-              {/* <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder="Password"
-                required
-              /> */}
-
               <TextField
                 label="Password"
                 variant="standard"
@@ -106,16 +84,21 @@ const Login = () => {
                 style={{ width: "100%" }}
               />
             </div>
-            <div className="mb-3">
-              <Link to="/forgot-password">Forgot Password?</Link>
+            <div className="btn_div">
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                className="btn btn-danger"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => navigate("/forgot-password")}
+                className="btn text-danger forgot_btn"
+              >
+                Forgot Password?
+              </button>
             </div>
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="btn btn-danger"
-            >
-              LOGIN
-            </button>
           </div>
         </div>
       </div>
