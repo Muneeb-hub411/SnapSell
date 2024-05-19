@@ -5,11 +5,15 @@ import { LuTwitter } from "react-icons/lu";
 import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import qr_image from "../pages/images/qr_image.png";
 import image from "../pages/images/image_3.png";
+import "../styles/Footer.css"
 
 function Footer() {
+
+  const navigate = useNavigate();
+
   return (
     <div className="container-fluid footer mt-5" >
       <div className="">
@@ -21,8 +25,8 @@ function Footer() {
                 Subscribe
               </h5>
               <p>Get 10% off your order</p>
-              <button className="btn btn-primary">
-                <Link to="/about">About</Link>
+              <button className="btn btn-light about_btn" onClick={()=> navigate('/about')}>
+                About Us
               </button>
             </div>
           </div>
@@ -39,7 +43,7 @@ function Footer() {
           </div>
           <div className="col-6 col-sm-2 col-md-2 d-flex justify-content-center">
             {/* Center content horizontally */}
-            <div className="grid-item">
+            <div className="grid-item link_div">
               <h5>Account</h5>
               <Link to='/myAccount'>My Account</Link>
               <Link to='/login'>Login / Register</Link>
@@ -50,7 +54,7 @@ function Footer() {
           </div>
           <div className="col-6 col-sm-2 col-md-2 d-flex justify-content-center">
             {/* Center content horizontally */}
-            <div className="grid-item">
+            <div className="grid-item link_div">
               <h5>Quick Link</h5>
               <Link to="/policy">Privacy Policy</Link>
               <Link to='/terms'>Terms of Use</Link>
@@ -87,7 +91,7 @@ function Footer() {
                 </div>
               </div>
               <br/>
-              <div style={{display: "flex", flexDirection:"row", justifyContent:"center"}}>
+              <div className="social_media">
                 <div className="col">
                   <GrFacebookOption />
                 </div>

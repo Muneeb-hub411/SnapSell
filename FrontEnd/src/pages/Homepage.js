@@ -182,7 +182,7 @@ const Homepage = () => {
                       <span class="reviews"> (88 reviews) </span>
                     </div>
                     <button
-                      className="btn btn-secondary btn-sm ms-1"
+                      className="btn btn-sm ms-1 mt-2"
                       style={{ fontSize: "12px" }}
                       onClick={(event) => {
                         // Modify onClick here
