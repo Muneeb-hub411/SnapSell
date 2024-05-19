@@ -38,7 +38,7 @@ const Products = () => {
                 to={`/dashboard/admin/update-Product/${p.slug}`}
                 className="product-link"
               >
-                <div className="card m-2" style={{ width: "12rem" }}>
+                <div className="card m-2" style={{ width: "16rem" }}>
                   <img
                     src={`/api/v1/products/product-image/${p._id}`}
                     className="card-img-top"
@@ -46,7 +46,8 @@ const Products = () => {
                     alt={p.name}
                   />
                   <div className="card-body">
-                    <h5 className="card-title">{p.name}</h5>
+                    <h4 className="card-title">{p.name}</h4>
+                  <hr/>
                     <p className="card-text">{p.description}</p>
                   </div>
                 </div>
