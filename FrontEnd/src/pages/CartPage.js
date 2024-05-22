@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
@@ -8,28 +8,28 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const CartPage = () => {
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   const [cart, setCart] = useCart();
-  const [clientToken, setClientToken] = useState("")
-  const [instance, setInstance] = useState("")
-  const [loading, setLoading] = useState(false)
+  const [clientToken, setClientToken] = useState("");
+  const [instance, setInstance] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   // Total Price
-  const totalPrice = () =>{
+  const totalPrice = () => {
     try {
       let total = 0;
-      cart?.map((item) =>{
-        total = total + item.price;
+      cart?.forEach((item) => {
+        total += item.price * item.quantity;
       });
       return total.toLocaleString("en-US", {
-        style: 'currency',
-        currency: 'USD',
-      })
+        style: "currency",
+        currency: "USD",
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   // Remove Item from Cart
   const removeCartItem = (pid) => {
@@ -50,10 +50,10 @@ const CartPage = () => {
       const { data } = await axios.get("/api/v1/products/braintree/token");
       setClientToken(data?.clientToken);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-  
+  };
+
   useEffect(() => {
     getToken();
   }, [auth?.token]);
@@ -76,7 +76,24 @@ const CartPage = () => {
       console.log(error);
       setLoading(false);
     }
-  }
+  };
+
+  const handleQuantityChange = (pid, amount) => {
+    const updatedCart = cart.map((item) => {
+      if (item._id === pid) {
+        const newQuantity = item.quantity + amount;
+        if (newQuantity < 1) return item; // Prevent quantity from going below 1
+        if (newQuantity > item.stock) {
+          toast.error(`Only ${item.stock} items in stock.`);
+          return item; // Prevent quantity from exceeding stock
+        }
+        return { ...item, quantity: newQuantity };
+      }
+      return item;
+    });
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
 
   return (
     <Layout>
@@ -98,7 +115,7 @@ const CartPage = () => {
         <div className="row">
           <div className="col-md-6">
             {cart?.map((p) => (
-              <div className="row mb-2 p-3 card flex-row">
+              <div key={p._id} className="row mb-2 p-3 card flex-row">
                 <div className="col-md-4">
                   <img
                     src={`/api/v1/products/product-image/${p._id}`}
@@ -112,6 +129,26 @@ const CartPage = () => {
                   <h6>{p.name}</h6>
                   <p>{p.description.substring(0, 30)}</p>
                   <p>Price: ${p.price}</p>
+                  <div className="quantity-control">
+                    <button
+                      className="quantity-action"
+                      onClick={() => handleQuantityChange(p._id, -1)}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      className="quantity-value"
+                      value={p.quantity}
+                      readOnly
+                    />
+                    <button
+                      className="quantity-action"
+                      onClick={() => handleQuantityChange(p._id, 1)}
+                    >
+                      +
+                    </button>
+                  </div>
                   <div
                     className="btn btn-danger"
                     onClick={() => removeCartItem(p._id)}
@@ -158,7 +195,7 @@ const CartPage = () => {
                       })
                     }
                   >
-                    Plase Login to checkout
+                    Please Login to checkout
                   </button>
                 )}
               </div>

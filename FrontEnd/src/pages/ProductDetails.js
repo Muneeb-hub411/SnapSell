@@ -12,13 +12,12 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [cart, setCart] = useCart();
+  const [quantity, setQuantity] = useState(1); // State to manage quantity
 
-  // Initial Product Details
   useEffect(() => {
     if (params?.slug) getProduct();
   }, [params?.slug]);
 
-  // Get Product
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
@@ -31,7 +30,6 @@ const ProductDetails = () => {
     }
   };
 
-  // Get similar product
   const getSimilarProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
@@ -43,23 +41,39 @@ const ProductDetails = () => {
     }
   };
 
+  const handleQuantityChange = (amount) => {
+    const newQuantity = quantity + amount;
+    if (newQuantity < 1) return; // Ensure quantity doesn't go below 1
+    if (newQuantity > product.quantity) {
+      toast.error(`Only ${product.quantity} items in stock.`);
+      return; // Ensure quantity doesn't exceed stock
+    }
+    setQuantity(newQuantity);
+  };
+
+  const handleAddToCart = () => {
+    const productWithQuantity = { ...product, quantity };
+    setCart([...cart, productWithQuantity]);
+    localStorage.setItem("cart", JSON.stringify([...cart, productWithQuantity]));
+    toast.success("Item added to cart!");
+  };
+
   return (
     <Layout>
       <div className="main_ContainerPadding135">
-        <div class="topBottom92Margin">
-          <nav class="breadcrumb-nav">
+        <div className="topBottom92Margin">
+          <nav className="breadcrumb-nav">
             <a href="/">Home </a> /
-            <a href="/ category/{product?.category?.name}">
-              {" "}
+            <a href={`/category/${product?.category?.name}`}>
               {product?.category?.name}
-            </a>{" "}
-            /<span class="current-page"> {product.name}</span>
+            </a> /
+            <span className="current-page"> {product.name}</span>
           </nav>
         </div>
 
-        <div class="product-container">
-          <div class="doubleColumnimages">
-            <div class="additional-images">
+        <div className="product-container">
+          <div className="doubleColumnimages">
+            <div className="additional-images">
               <img
                 src={`/api/v1/products/product-image/${product._id}`}
                 alt={product.name}
@@ -78,7 +92,7 @@ const ProductDetails = () => {
               />
             </div>
 
-            <div class="main-image img">
+            <div className="main-image img">
               <img
                 src={`/api/v1/products/product-image/${product._id}`}
                 alt={product.name}
@@ -86,39 +100,57 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <div class="details">
+          <div className="details">
             <h6 className="text-24pxregularInter">{product.name}</h6>
-            <h6 className="16pxregularInter">${product.price}</h6>
+            <h6 className="16pxregularInter">${product.price * quantity}</h6>
             <h6 className="text-12pxregularInter">{product.description}</h6>
-            <div class="line"></div>
+            <div className="line"></div>
             <h6 className="heading-20pxregular">
               Category : {product?.category?.name}
             </h6>
-            <div class="product-details1">
-              <div class="rating">
-                <span class="golden-star">&#9733;</span>
-                <span class="golden-star">&#9733;</span>
-                <span class="golden-star">&#9733;</span>
-                <span class="golden-star">&#9733;</span>
-                <span class="golden-star">&#9733;</span>
+            <div className="product-details1">
+              <div className="rating">
+                <span className="golden-star">&#9733;</span>
+                <span className="golden-star">&#9733;</span>
+                <span className="golden-star">&#9733;</span>
+                <span className="golden-star">&#9733;</span>
+                <span className="golden-star">&#9733;</span>
               </div>
-              <span class="reviews"> (150 reviews) | </span>
-              <span class="availability in-stock">In Stock</span>
+              <span className="reviews"> (150 reviews) | </span>
+              <span className="availability in-stock">
+                {product.quantity > 0 ? "In Stock" : "Out of Stock"}
+              </span>
+            </div>
+
+            <div className="quantity-control">
+              <button
+                className="quantity-action"
+                onClick={() => handleQuantityChange(-1)}
+              >
+                -
+              </button>
+              <input
+                type="number"
+                className="quantity-value"
+                value={quantity}
+                min="1"
+                readOnly
+              />
+              <button
+                className="quantity-action"
+                onClick={() => handleQuantityChange(1)}
+              >
+                +
+              </button>
             </div>
 
             <button
-              class="buttonRed"
-              onClick={() => {
-                setCart([...cart, product]);
-                localStorage.setItem(
-                  "cart",
-                  JSON.stringify([...cart, product])
-                );
-                toast.success("Item added to cart!");
-              }}
+              className="buttonRed"
+              onClick={handleAddToCart}
             >
               Buy Now
             </button>
+
             <div className="color-selection">
               <span
                 className="color-option selected"
@@ -150,25 +182,9 @@ const ProductDetails = () => {
               <span className="size-option">XL</span>
             </div>
 
-            <div className="quantity-control">
-              <button className="quantity-action">-</button>
-              <input
-                type="number"
-                className="quantity-value"
-                value="1"
-                min="1"
-              />
-              <button className="quantity-action">+</button>
-            </div>
-
             <i className="fas fa-heart favorite-btn"></i>
 
             <div className="delivery-info">
-              <div className="delivery-option">
-                <h4>Free Delivery</h4>
-                <p>Enter your postal code for delivery availability.</p>
-              </div>
-
               <div className="delivery-option">
                 <h4>Return Policy</h4>
                 <p>
@@ -195,48 +211,48 @@ const ProductDetails = () => {
         <div className="d-flex flex-wrap">
           {relatedProducts?.map((p) => (
             <div
-            key={p.name}
-            className="card m-2"
-            style={{ width: "15rem" }}
-            onClick={() => navigate(`/products/${p.slug}`)} // Add onClick to the card
-          >
-            <img
-              src={`/api/v1/products/product-image/${p._id}`}
-              className="card-img-top"
-              height={"150px"}
-              alt={p.name}
-            />
+              key={p.name}
+              className="card m-2"
+              style={{ width: "15rem" }}
+              onClick={() => navigate(`/products/${p.slug}`)} // Add onClick to the card
+            >
+              <img
+                src={`/api/v1/products/product-image/${p._id}`}
+                className="card-img-top"
+                height={"150px"}
+                alt={p.name}
+              />
 
-            <div className="product-info">
-              <h5 className="titleOfCard">
-                {p.name.substring(0, 20)}...
-              </h5>
-              <p className="product-price">
-                <span>${p.price - (p.price * 40) / 100}</span>{" "}
-                <del>${p.price}</del>
-              </p>
-              <div class="product-details1">
-                <div class="rating"> 
-                  <span class="golden-star">&#9733;</span>
-                  <span class="golden-star">&#9733;</span>
-                  <span class="golden-star">&#9733;</span>
-                  <span class="golden-star">&#9733;</span>
-                  <span class="golden-star">&#9733;</span>
+              <div className="product-info">
+                <h5 className="titleOfCard">
+                  {p.name.substring(0, 20)}...
+                </h5>
+                <p className="product-price">
+                  <span>${p.price - (p.price * 40) / 100}</span>{" "}
+                  <del>${p.price}</del>
+                </p>
+                <div className="product-details1">
+                  <div className="rating">
+                    <span className="golden-star">&#9733;</span>
+                    <span className="golden-star">&#9733;</span>
+                    <span className="golden-star">&#9733;</span>
+                    <span className="golden-star">&#9733;</span>
+                    <span className="golden-star">&#9733;</span>
+                  </div>
+                  <span className="reviews"> (88 reviews) </span>
                 </div>
-                <span class="reviews"> (88 reviews) </span>
-              </div>
-              <button
-                className="btn btn-secondary btn-sm ms-1"
-                style={{ fontSize: "12px" }}
-                onClick={(event) => {
-                  // Modify onClick here
-                  event.stopPropagation(); // Prevent card click from propagating up
-                  setCart([...cart, p]);
-                  localStorage.setItem(
-                    "cart",
-                    JSON.stringify([...cart, p])
-                  );
-                  toast.success("Item added to cart!");
+                <button
+                  className="btn btn-secondary btn-sm ms-1"
+                  style={{ fontSize: "12px" }}
+                  onClick={(event) => {
+                    // Modify onClick here
+                    event.stopPropagation(); // Prevent card click from propagating up
+                    setCart([...cart, p]);
+                    localStorage.setItem(
+                      "cart",
+                      JSON.stringify([...cart, p])
+                    );
+                    toast.success("Item added to cart!");
                   }}
                 >
                   ADD TO CART
