@@ -39,26 +39,28 @@ const CreateProduct = () => {
   const checkPrice = async () => {
     const options = {
       method: "GET",
-      url: "https://pricejson-amazon.p.rapidapi.com/pricejson/search",
+      url: "https://amazon-merchant-data.p.rapidapi.com/search-products",
       params: {
-        q: name,
-        category: category,
+        term: name,
+        country: 'de',
       },
       headers: {
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI_KEY,
-        "X-RapidAPI-Host": "pricejson-amazon.p.rapidapi.com",
+        "X-RapidAPI-Key": "2328910249mshccaf7de7f44f125p1d1930jsnac1c9b82fc42",
+        "X-RapidAPI-Host": "amazon-merchant-data.p.rapidapi.com",
       },
     };
 
     try {
       const response = await axios.request(options);
-      const products = response.data.products; // Array of products
+      const products = response.data.content.offers; // Array of products
+      // console.log("Price:"+products)
 
       // Calculate average price of all products
       const totalPrices = products.reduce((sum, product) => {
-        const fetchedPrice = parseFloat(product.price.replace("$", ""));
+        const fetchedPrice = parseFloat(product.price);
         return sum + fetchedPrice;
       }, 0);
+      
       const averagePrice = totalPrices / products.length;
 
       // Calculate 10% of the average price
@@ -69,6 +71,7 @@ const CreateProduct = () => {
       const ten_minus_Avg = averagePrice - tenPercent;
 
       // Display product price using window.alert
+      // window.alert(`Average Product Price: ${response.data.products[0].price}`); // Display with 2 decimal places
       window.alert(`Average Product Price: $${averagePrice.toFixed(2)}`); // Display with 2 decimal places
 
       // Log full product details to the console
@@ -105,7 +108,7 @@ const CreateProduct = () => {
     const isValidPrice = await checkPrice();
   
     if (!isValidPrice) {
-      toast.error("Price does not meet conditions.");
+      toast.error("Price does not meet conditions. Kindly contact customer support!");
       setLoading(false);
       return;
     }
