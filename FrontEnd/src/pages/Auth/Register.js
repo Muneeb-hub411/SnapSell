@@ -73,13 +73,30 @@ const Register = () => {
             </div>
             <div className="mb-3">
               <TextField
-                label="Password" // Update the label
+                label="Email"
+                multiline
+                maxRows={7}
                 variant="standard"
-                type="password" // Change type to 'password'
-                value={password} // Assuming you have a 'password' state variable
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                id="exampleInputEmail"
+                aria-describedby="emailHelp"
+                placeholder="Email"
+                required
+                style={{ width: "100%" }}
+              />
+            </div>
+            <div className="mb-3">
+              <TextField
+                label="Password"
+                variant="standard"
+                type="password" 
+                value={password} 
                 onChange={(e) => setPassword(e.target.value)}
                 className="form-control"
-                id="exampleInputPassword" // Update ID if desired
+                id="exampleInputPassword"
                 placeholder="Password"
                 required
                 style={{ width: "100%" }}

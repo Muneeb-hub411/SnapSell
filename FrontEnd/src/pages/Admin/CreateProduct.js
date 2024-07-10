@@ -45,7 +45,7 @@ const CreateProduct = () => {
         country: 'de',
       },
       headers: {
-        "X-RapidAPI-Key": "2328910249mshccaf7de7f44f125p1d1930jsnac1c9b82fc42",
+        "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI_KEY,
         "X-RapidAPI-Host": "amazon-merchant-data.p.rapidapi.com",
       },
     };
